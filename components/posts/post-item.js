@@ -12,15 +12,23 @@ const PostItem = (props) => {
         year: "numeric",
     });
 
+    const imagePath = `/images/posts/${slug}/${image}`;
+
     return (
         <li className={classes.post}>
-            <Link>
-                <div className={classes.iamge}>
-                    <Image />
+            <Link href={`/posts/${slug}`}>
+                <div className={classes.image}>
+                    <Image
+                        src={imagePath}
+                        alt={title}
+                        width={300}
+                        height={200}
+                        layout="responsive"
+                    />
                 </div>
                 <div className={classes.content}>
                     <h3>{title}</h3>
-                    <time>{formattedDate</time>
+                    <time>{formattedDate}</time>
                     <p>{description}</p>
                 </div>
             </Link>

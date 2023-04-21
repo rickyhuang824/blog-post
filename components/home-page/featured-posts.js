@@ -1,10 +1,12 @@
 import React from "react";
 import classes from "./featured-posts.module.css";
+import PostsList from "../posts/posts-grid";
 
-const FeaturedPosts = () => {
+const FeaturedPosts = (props) => {
     return (
-        <section>
+        <section className={classes.latest}>
             <h2>Featured Posts</h2>
+            <PostsList posts={props.posts} />
         </section>
     );
 };
