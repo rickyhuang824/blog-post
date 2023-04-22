@@ -1,10 +1,14 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import classes from "./contact-form.module.css";
+import { NotificationContext } from "@/store/notification-context";
+import Notification from "../ui/notification";
 
 const ContactForm = () => {
     const emailRef = useRef();
     const nameRef = useRef();
     const messageRef = useRef();
+    const notificationCtx = useContext(NotificationContext);
+    const notifications = notificationCtx.notifications;
 
     const formSubmitHandler = (e) => {
         e.preventDefault();
@@ -12,6 +16,12 @@ const ContactForm = () => {
         const enteredEmail = emailRef.current.value;
         const enteredName = nameRef.current.value;
         const enteredMessage = messageRef.current.value;
+
+        notificationCtx.showNotifications({
+            title: "sending info",
+            message: "sending info to the backend",
+            status: "pending",
+        });
 
         fetch("/api/contact", {
             method: "POST",
@@ -22,17 +32,43 @@ const ContactForm = () => {
             }),
             headers: { "Content-Type": "application/json" },
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                return response.json().then((data) => {
+                    throw new Error(data.message || "Something went wrong");
+                });
+            })
             .then((responseData) => {
-                console.log(responseData);
+                notificationCtx.showNotifications({
+                    title: "Sucessfully sent info",
+                    message: "Sent info to the backend",
+                    status: "success",
+                });
                 emailRef.current.value = "";
                 nameRef.current.value = "";
                 messageRef.current.value = "";
+            })
+            .catch((error) => {
+                notificationCtx.showNotifications({
+                    title: "Failed sent info",
+                    message: "Somthing wrong when sending the info",
+                    status: "error",
+                });
             });
     };
 
     return (
         <section className={classes.contact}>
+            {notifications && (
+                <Notification
+                    title={notifications.title}
+                    message={notifications.message}
+                    status={notifications.status}
+                />
+            )}
             <h1>How can I help you ?</h1>
             <form className={classes.form} onSubmit={formSubmitHandler}>
                 <div className={classes.controls}>

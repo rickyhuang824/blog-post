@@ -577,3 +577,28 @@ and provided by next JS
 
 -   set up the core page
 -   Layout (`<main>` tag)
+
+## \_document.js vs. \_app.js
+
+You can use the \_document to set lang, load fonts, load scripts before page interactivity, collect style sheets for CSS in JS solutions like Styled Components, among a few other things.
+
+-   https://nextjs.org/docs/advanced-features/custom-document
+-   https://nextjs.org/docs/basic-features/font-optimization
+-   https://nextjs.org/docs/basic-features/script#beforeinteractive
+-   https://github.com/vercel/next.js/blob/canary/examples/with-styled-components/pages/_document.tsx
+
+For example, applying a CSS class to the body of the page, as part of the render logic, is not possible in \_app. It is only possible via side-effects.
+
+And that's about it. Some often try to inject initial data, and other discouraged things in \_document, which you're probably better off ignoring.
+
+\_app in the other hand, is more of a page initialiser, from the docs:
+
+Next.js uses the App component to initialize pages. You can override it and control the page initialization. Which allows you to do amazing things like:
+
+Persisting layout between page changes
+Keeping state when navigating pages
+Custom error handling using componentDidCatch
+Inject additional data into pages
+-Add global CSS
+All of that because \_app actually does get executed at runtime!
+also you could use \_document along with React Portals
