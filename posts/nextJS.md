@@ -1,6 +1,6 @@
 ---
 title: "NextJS Note"
-date: "2023-04-2"
+date: "2023-04-02"
 image: nextJS.png
 description: The React Framework for the Web. Next.js enables you to create full-stack Web applications by extending the latest React features, and integrating powerful Rust-based JavaScript tooling for the fastest builds.
 isFeatured: true
