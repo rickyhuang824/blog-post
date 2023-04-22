@@ -19,17 +19,16 @@ const handler = async (req, res) => {
         const newMessage = { email, name, message };
 
         let client;
+        const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.dgpy9yx.mongodb.net/?retryWrites=true&w=majority`;
 
         try {
-            client = await MongoClient.connect(
-                "mongodb+srv://ricky:uVf6E0SLTsUnd0wP@cluster0.sceyq.mongodb.net/blog-posts-next-js?retryWrites=true&w=majority"
-            );
+            client = await MongoClient.connect(connectionString);
         } catch (err) {
             res.status(500).json({ message: err.message });
             return;
         }
 
-        const db = client.db("blog-posts-next-js");
+        const db = client.db(process.env.MONGODB_DATABASE);
 
         try {
             const result = await db

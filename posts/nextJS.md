@@ -602,3 +602,15 @@ Inject additional data into pages
 -Add global CSS
 All of that because \_app actually does get executed at runtime!
 also you could use \_document along with React Portals
+
+## Deploy NextJS Apps
+
+![deployment](deployment.png)
+
+-   deploy steps && considerations:
+
+    ![deployment-1](deployment-1.png)
+
+-   .env.local always overrides the defaults set.
+
+-   connect git with vercel
