@@ -614,3 +614,24 @@ also you could use \_document along with React Portals
 -   .env.local always overrides the defaults set.
 
 -   connect git with vercel
+
+## NextJS Auth
+
+-   ![auth](auth.png)
+
+-   ![auth-1](auth-1.png)
+
+    -   reason for using token instead of sessions:
+
+        -   pages are served directly and populated with logic without necessaryily hitting the server. NextJS could build pages which use get service-side props and therefore there will be a request handled by the server every time that page is being served. But you will also have many pages which are pre-generated. And once the user is on your website, many pages will not be fetched from the backend at all, but instead will be loaded and generated dynamically with front-end javascript because you still have a single-page application. You don't send a request for every page you visit because you're not using get server-side props on every page.
+
+        -   So to server, doesn't see every request which you send and therefore you load pages without the server being able to directly find out if you are authenticated or not. In addition, backend APIs which be used for a single-page applications are typically stateless. They don't care about the individual connected clients. They don't keep track of all the connected clients.Instead, the idea is that, that API can work pretty much on its own. And it just is able to hand out permissions to clients who authenticated so that they can then later request access to protect the resources.The API itself does not store any extra information about any connected clients. And since this is how we build single-page applications the server is not involved in every request and every action that's happening on our page because we handled that with front-end JavaScript and we have that stateless API connected to the SPA.
+
+### JWT:
+
+![jwt](jwt.png)
+
+-   You can unpack it and read the data inside of it without knowing that key. That key only proves that a given server created that token. But you can read the content of the token without knowing that key. The key of course will not be included in the token though.
+-   And for example, if you wanna change our password we don't just send the old and the new password but we also include that token in the outgoing request. And that token then is validated by the server which basically checks... Okay. If I would use my signing key which only I know would I be able to generate this token? And if the answer is, yes. The server knows that it's valid. If the answer is no. It's invalid and access is denied.
+
+### Next Auth:
