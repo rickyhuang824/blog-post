@@ -19,7 +19,7 @@ const handler = async (req, res) => {
         const newMessage = { email, name, message };
 
         let client;
-        const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.dgpy9yx.mongodb.net/?retryWrites=true&w=majority`;
+        const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.e3ua6bv.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGODB_APPNAME}`;
 
         try {
             client = await MongoClient.connect(connectionString);
