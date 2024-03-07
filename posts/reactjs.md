@@ -1,7 +1,7 @@
 ---
 title: "React Note"
 date: "2024-03-06"
-image: react.png
+image: reactjs.png
 description: React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript.
 isFeatured: true
 ---
