@@ -7,3 +7,6 @@ isFeatured: true
 ---
 
 # RemixJS notes
+
+## Remix vs NextJS
+![remix-1](remix-1.png)
