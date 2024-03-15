@@ -24,8 +24,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 ```
 2. To get params like: http://localhost:3000/contacts/alex-anderson use the params argument since it's from the routing (the file name is contacts.$contactId.tsx)
-![remix-params](remix-params.png)
-
 ```javascript
 export const action = async ({ request, params }: ActionFunctionArgs) => {
     invariant(params.contactId, "Missing contactId param");
