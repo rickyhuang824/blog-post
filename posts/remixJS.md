@@ -14,7 +14,24 @@ isFeatured: true
 ## Search Params vs Params
 
 1. To get search params like: http://localhost:3000/?q=alex use the request.url since the params argument will not include anything from the ? mark
-![remix-search-param](remix-search-param.png)
+```javascript
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+    const url = new URL(request.url);
+    const searchParams = url.searchParams;
+    const q = searchParams.get("q");
+    const contacts = await getContacts(q);
+    return json({ contacts, q });
+};
+```
 2. To get params like: http://localhost:3000/contacts/alex-anderson use the params argument since it's from the routing (the file name is contacts.$contactId.tsx)
 ![remix-params](remix-params.png)
+
+```javascript
+export const action = async ({ request, params }: ActionFunctionArgs) => {
+    invariant(params.contactId, "Missing contactId param");
+    const formData = await request.formData();
+    const favorite = formData.get("favorite");
+    return updateContact(params.contactId, { favorite: favorite === "true" });
+};
+```
 
