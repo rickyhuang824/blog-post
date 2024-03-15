@@ -10,3 +10,11 @@ isFeatured: true
 
 ## Remix vs NextJS
 ![remix-1](remix-1.png)
+
+## Search Params vs Params
+
+1. To get search params like: http://localhost:3000/?q=alex use the request.url since the params argument will not include anything from the ? mark
+![remix-search-param](remix-search-param.png)
+2. To get params like: http://localhost:3000/contacts/alex-anderson use the params argument since it's from the routing (the file name is contacts.$contactId.tsx)
+![remix-params](remix-params.png)
+

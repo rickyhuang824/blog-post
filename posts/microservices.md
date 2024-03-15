@@ -10,6 +10,9 @@ isFeatured: true
 
 This is a note for the Microservices knowledge
 
+## Monolithic Server
+![monolithic-server](monolithic-server.png)
+
 ## Event Bus
 
 ### what does event bus do?
