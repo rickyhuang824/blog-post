@@ -89,4 +89,9 @@ export default function Scoreboard() {
   );
 ```
 
+### Typescript interface vs type aliase
 
+1. interfaces will detect property or method name conflicts at compile time and generate an error, whereas type intersections will merge the properties or methods without throwing errors. Therefore, if we need to overload functions, type aliases should be used
+
+![typescirpt-1](typescirpt-1.png)
+![typescirpt-2](typescirpt-2.png)
