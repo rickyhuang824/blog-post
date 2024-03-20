@@ -95,3 +95,21 @@ export default function Scoreboard() {
 
 ![typescript-1](typescript-1.png)
 ![typescript-2](tyriicript-2.png)
+
+2. Declaration merging is a feature that is exclusive to interfaces.
+```js
+
+interface Client {
+    name: string;
+}
+
+interface Client {
+    age: number;
+}
+
+const harry: Client = {
+    name: "Harry";
+    age: 18;
+}
+
+```
