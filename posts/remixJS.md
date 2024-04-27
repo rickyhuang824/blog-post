@@ -17,7 +17,6 @@ The adapter's job is to
 3. adapt the Web Fetch Response back to the host server's response API
 
 ## Remix vs NextJS
-![remix-1](remix-1.png)
 
 ## Search Params vs Params
 
@@ -33,6 +32,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 ```
 
 2. To get params like: http://localhost:3000/contacts/alex-anderson use the params argument since it's from the routing (the file name is contacts.$contactId.tsx)
+
 ```javascript
 export const action = async ({ request, params }: ActionFunctionArgs) => {
     invariant(params.contactId, "Missing contactId param");

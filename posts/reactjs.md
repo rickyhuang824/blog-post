@@ -88,3 +88,24 @@ export default function Scoreboard() {
     </div>
   );
 ```
+
+### hot reloading
+- This means every time a change is detected, the browser auto reloads the page and has the ability to build and bundle the entire application when the time comes
+
+### JWT vs Session
+
+- JWT Authentication: Here, the server generates a token that the client stores and presents with each request. It's a stateless method, meaning the server doesn't need to keep a record of the token.
+- Session-Based Authentication: Contrarily, it's stateful. The server creates a session for the user and stores session data on the server-side. The client holds only a session identifier, typically in a cookie.
+
+
+- JWT in Action:
+     - Upon user authentication, the server generates a JWT.
+     - This JWT is sent back to the client and stored, often in local storage or an HTTP-only cookie.
+     - The client includes this token in the HTTP Authorization header for subsequent requests.
+     - The server validates the token and grants access if valid.
+
+ - Session in Action:
+    - User Authentication: The user provides credentials, which the server verifies.
+    - Session Creation: Upon successful authentication, the server creates a session record with a unique identifier, user identifier, session start time, expiry, and possibly additional context like IP address and User Agent. Stores that in Database.
+    - Cookie Storage: This session identifier is sent back and stored as a cookie in the user’s browser.
+    - Session Validation: Each request from the user’s browser includes this cookie, then server validates the session by querying to Database. If valid, the request is processed.
